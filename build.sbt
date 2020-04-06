@@ -48,6 +48,7 @@ lazy val rootProject = (project in file("."))
     refined,
     enumeratum,
     circeJson,
+    jsoniterScala,
     playJson,
     sprayJson,
     uPickleJson,
@@ -187,6 +188,17 @@ lazy val uPickleJson: Project = (project in file("json/upickle"))
     name := "tapir-json-upickle",
     libraryDependencies ++= Seq(
       "com.lihaoyi" %% "upickle" % Versions.upickle,
+      scalaTest % Test
+    )
+  )
+  .dependsOn(core)
+
+lazy val jsoniterScala: Project = (project in file("json/jsoniter"))
+  .settings(commonSettings)
+  .settings(
+    name := "tapir-jsoniter-scala",
+    libraryDependencies ++= Seq(
+      "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-core" % "2.1.12",
       scalaTest % Test
     )
   )
